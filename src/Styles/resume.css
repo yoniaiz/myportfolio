@@ -1,0 +1,61 @@
+.title{
+    color: rgba(64,118,201,0.7);
+}
+.semiTitle{
+    color:#61535a; 
+}
+.containerResume {
+    z-index: 100;
+    position: absolute;
+    top:10%;
+    /* left:-25%; */
+    align-items: flex-start;
+    background-color: hsl(22, 56%, 87%);
+    height: 70vh;
+    overflow-y: scroll;
+}
+.he {
+    text-align: right;
+}
+#resumeHe{
+    margin-right: 10%;
+}
+#resume{
+    margin-left: 10%;
+}
+
+.head{
+    color: #8a7680;
+    font-size: 20px;
+    font-weight: bold;
+}
+.info{
+    font-size: 18px;
+    color: #61535a;
+}
+.skills{
+    color: #61535a;
+    font-size: 19px;
+    font-weight: 500;
+    
+}
+
+.containerResume::-webkit-scrollbar {
+    width: 0.7em;
+}
+ 
+.containerResume::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+ 
+.containerResume::-webkit-scrollbar-thumb {
+  background-color: rgba(64,118,201,0.7);
+  outline: 1px solid rgba(64,118,201,0.7);
+}
+
+@media (max-width: 1023px) {
+	.containerResume{
+        top:46% !important;
+    }
+
+}

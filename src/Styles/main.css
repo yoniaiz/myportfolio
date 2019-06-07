@@ -1,0 +1,374 @@
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: '"Numans" , sans - serif';
+    display: flex;
+}
+
+.box {
+    position: absolute;
+    z-index: 1;
+    width: 56.5vw;
+    height: 100vh;
+    display: hidden;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.enter {
+    right: -1000px;
+    animation-name: enterBlock;
+    animation-duration: 2.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-out;
+}
+.next{
+    animation-name: next;
+    animation-duration: 1.6s;
+    animation-delay: 0s;
+    width: 180vw;
+    animation-timing-function: linear;
+}
+@keyframes next {
+    0% {
+        display: block;
+        right: -180vw;
+    }
+
+    10% {
+        right: -160vw;
+    }
+
+    90% {
+        right: 50vw;
+    }
+
+    100% {
+        right: 60vw;
+    }
+}
+@keyframes enterBlock {
+    0% {
+        display: hidden;
+        right: -1000px;
+    }
+
+    5% {
+        display: block;
+        right: -1000px;
+    }
+
+    90% {
+        right: -3px;
+    }
+
+    100% {
+        right: -3px;
+    }
+}
+
+.exit {
+    right: 0px;
+    animation-name: exit;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes exit {
+    0% {
+        opacity: 1;
+        right: 0px;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        right: -1000px;
+    }
+}
+
+
+
+.mainImage {
+    position: absolute;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+}
+
+.enterImage {
+    opacity: 0;
+    animation-name: mainImageLoad;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.exitImage {
+    animation-name: endMain;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes endMain {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes mainImageLoad {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+/* DEMO-SPECIFIC STYLES */
+.typewriter {
+    position: absolute;
+    margin-top: 5% !important;
+    color: #61535a;
+    overflow: hidden;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    overflow: none;
+}
+.he{
+    margin-left: 100px !important
+}
+.second{
+    margin-top: 10% !important;
+}
+.container{
+    margin-left: 25vw !important;
+}
+.inType {
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+}
+.inTypeHe{
+    border-left: .15em solid orange;
+    
+}
+
+.typing {
+    animation:
+        typing 2.5s steps(30, end),
+        blink-caret .5s step-end infinite;
+}
+.typingHe {
+    animation:
+        typingHe 2.5s steps(30, end),
+        blink-caret .5s step-end infinite;
+}
+.starder2{
+    top : 10%;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 44%;
+    }
+}
+
+@keyframes typingHe {
+    from {
+        width: 0
+    }
+    to {
+        width: 32%;
+    }
+}
+
+.erase {
+    animation-name: erase;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+.eraseHe {
+    animation-name: eraseHe;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes erase {
+    from {
+        width: 44%
+    }
+
+    to {
+        width: 0
+    }
+}
+@keyframes eraseHe {
+    from {
+        width: 32%
+    }
+
+    to {
+        width: 0
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange
+    }
+}
+@media (min-width: 2000px) {
+    .typewriter {
+		display: flex !important;
+        margin-top: 70px !important;
+        font-size: 70px !important;
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 190px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 30vw !important;
+    }
+
+}
+@media (max-width: 1441px) {
+    .typewriter {
+		display: flex !important;
+        margin-top: 70px !important;
+
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 140px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 25vw !important;
+    }
+
+}
+@media (max-width: 1024px) {
+	.typewriter {
+		display: flex !important;
+        margin-top: 70px !important;
+        font-size: 37px;
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 120px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 18vw !important;
+    }
+
+}
+@media (max-width: 790px) {
+	.typewriter {
+		display: flex !important;
+        margin-top: 290px !important;
+        font-size: 37px;
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 340px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 7vw !important;
+    }
+
+}
+@media (max-width: 500px) {
+	.typewriter {
+		display: flex !important;
+        margin-top: 300px !important;
+        font-size: 22px;
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 340px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 0px !important;
+    }
+
+}
+
+@media (max-width: 390px) {
+	.typewriter {
+		display: flex !important;
+        margin-top: 300px !important;
+        font-size: 19px !important;
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 330px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 0px !important;
+    }
+
+}
+
+@media (max-width: 330px) {
+	.typewriter {
+		display: flex !important;
+        margin-top: 300px !important;
+        font-size: 16px !important;
+	}
+
+	.second{
+        display: flex !important; 
+        margin-top: 330px !important;
+    }
+    .container{
+        display: flex !important;
+        margin-left: 0px !important;
+    }
+
+}

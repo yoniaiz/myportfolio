@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta:700');
+
+$pink: hsl(22, 56%, 87%);
+$black: #52474c;
+
+@mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65, 0, .076, 1)) {
+  transition: $property $duration $ease;
+}
+
+* {
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+.Back {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+  bottom: 10% !important;
+  left: 55% !important;
+}
+
+#btn{
+  position: absolute;
+  left:43%;
+  bottom: 5%;
+  z-index: 100000;
+}
+#btn1{
+  position: absolute;
+  left:53% !important;
+  bottom: 5%;
+  z-index: 100000;
+}
+#Back{
+  -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.button {
+  position: absolute;
+  top: 85%;
+  left: 42.5%;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+
+  &.learn-more {
+    width: 12rem;
+    height: auto;
+
+    .circle {
+      @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
+      position: relative;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: $black;
+      border-radius: 1.625rem;
+
+      .icon {
+        @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: $pink;
+
+        &.arrow {
+          @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
+          left: 0.625rem;
+          width: 1.125rem;
+          height: 0.125rem;
+          background: none;
+
+          &::before {
+            position: absolute;
+            content: '';
+            top: -0.25rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+
+    .button-text {
+      @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 0;
+      margin: 0 0 0 1.85rem;
+      color: $black;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  &:hover {
+    .circle {
+      width: 100%;
+
+      .icon {
+        &.arrow {
+          background: $pink;
+          transform: translate(1rem, 0);
+        }
+      }
+    }
+
+    .button-text {
+      color: $pink;
+    }
+  }
+}
+
+@supports (display: grid) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.625rem;
+    grid-template-areas: ". main main ."". main main .";
+  }
+
+  #container {
+    grid-area: main;
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+@media (min-width: 2000px) {
+  #btn {
+    left: 46%;
+  }
+  #btn1{
+    bottom: 52% !important ;
+    left: 29% !important;
+  }
+}
+
+
+@media (max-width: 1999px) {
+  #btn {
+    left: 45% !important;
+  }
+  #btn1{
+    bottom: 34% !important ;
+    left: 38% !important;
+  }
+}
+
+@media (max-width: 1025px) {
+  #btn {
+    left: 38% !important;
+  }
+  #btn1{
+    bottom: 32% !important ;
+    left: 50% !important;
+  }
+
+}
+
+@media (max-width: 790px) {
+  #btn {
+    left: 38%;
+  }
+  #btn1{
+    left: 48% !important;
+    bottom: 31.5% !important;
+  }
+}
+
+@media (max-width: 500px) {
+  #btn {
+    left: 30% !important;
+  }
+  #btn1{
+    left: 45% !important;
+    bottom: 32% !important ;
+  }
+
+}
+
+@media (max-width: 390px) {
+  #btn {
+    left: 27% !important;
+  }
+  #btn1{
+    left: 45% !important;
+    
+  }
+}
+
+@media (max-width: 330px) {
+  #btn {
+    left: 25% !important;
+  }
+  #btn1{
+    left: 50% !important;
+  }
+
+}

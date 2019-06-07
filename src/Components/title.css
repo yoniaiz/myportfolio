@@ -1,0 +1,80 @@
+/* Small headline */
+#smalltitle {
+    font-family: Gill Sans, Verdana;
+    font-size: 16.3px;
+    line-height: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3.2px;
+    font-weight: bold;
+    position: relative;
+    left:-80px;
+    top: -7px;
+    color: #00bfb6;
+}
+
+
+/* Large Headline */
+#maintitle {
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    color: #888;
+    margin: 0;
+    padding: 0px 0px 6px 0px;
+    font-size: 130px;
+    line-height: 44px;
+    letter-spacing: -2px;
+    font-weight: bold;
+}
+
+#header {
+    text-align: center;
+    position: relative;
+    top: 20px;
+    right: 8% !important;
+}
+
+@media (min-width: 2000px) {
+    #header {
+        right:22% !important;
+    }
+   }
+   
+   @media (max-width: 1999px) {
+    #header {
+        right:14% !important;
+    }
+   }
+   
+   @media (max-width: 1025px) {
+    #header {
+        right:5% !important;
+    }
+   }
+   
+   @media (max-width: 790px) {
+    #header {
+        right:5% !important;
+    }
+   }
+   
+   @media (max-width: 500px) {
+    #header {
+        transform: scale(0.8,0.8);
+        right: 13% !important;
+    }
+ 
+   }
+   
+   @media (max-width: 390px) {
+    #header {
+        transform: scale(0.7,0.7);
+        right: 12% !important;
+    }
+   }
+   
+   @media (max-width: 330px) {
+    #header {
+        transform: scale(0.6,0.6);
+        right: 14% !important;
+    }
+   
+   }
