@@ -58,65 +58,40 @@ class FlyingStuff extends Component {
     }
     else{
         clearInterval(myVar)
-        this.clear(mymove.name)
+        this.update(null)
         this.flyingObject(mymove.name)
     }  
   }
 
   update = async (str,x,y) => {
+    let myUpdate = (str)?<Stuff obj={str} right={x} top={y}></Stuff>:null;
     switch (str){
         case 'cloud':
-            await this.setState({cloud:<Stuff obj={str} right={x} top={y}></Stuff>})
+            await this.setState({cloud:myUpdate})
             break
         case 'h1':
-            await this.setState({h1:<Stuff obj={str} right={x} top={y}></Stuff>})
+            await this.setState({h1:myUpdate})
             break
         case 'const':
-                await this.setState({const:<Stuff obj={str} right={x} top={y}></Stuff>})
+                await this.setState({const:myUpdate})
             break
         case 'a':
-                await this.setState({a:<Stuff obj={str} right={x} top={y}></Stuff>})
+                await this.setState({a:myUpdate})
             break
         case 'error':
-                await this.setState({error:<Stuff obj={str} right={x} top={y}></Stuff>})
+                await this.setState({error:myUpdate})
             break
         case 'consolelog':
-                await this.setState({consolelog:<Stuff obj={str} right={x} top={y}></Stuff>})
+                await this.setState({consolelog:myUpdate})
             break
         case 'div':
-                await this.setState({div:<Stuff obj={str} right={x} top={y}></Stuff>})
+                await this.setState({div:myUpdate})
             break
         default:
-                await this.setState({dot:<Stuff obj={str} right={x} top={y}></Stuff>})
+                await this.setState({dot:myUpdate})
   }
 }
-  clear = async (str) => {
-    switch (str){
-        case 'cloud':
-            await this.setState({cloud:null})
-            break
-        case 'h1':
-            await this.setState({h1:null})
-            break
-        case 'const':
-            await this.setState({const:null})
-            break
-        case 'a':
-            await this.setState({a:null})
-            break
-        case 'error':
-            await this.setState({error:null})
-            break
-        case 'consolelog':
-            await this.setState({consolelog:null})  
-            break
-        case 'div':
-            await this.setState({div:null})
-            break
-        default:
-            await this.setState({dot:null})
-  }
-}
+
   render() {
     
     return (

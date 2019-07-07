@@ -5,6 +5,7 @@ import Resume from '../Components/Resume'
 import { Redirect } from "react-router-dom";
 import '../Styles/main.css'
 class MainPage extends Component {
+    noScroll = require('no-scroll');
     // main image possibilties and classes.
     mainImage = { 
         mainImageEnter : <img className='mainImage enterImage' src='/profilio/mainpageTamplate.png' alt='main' ></img>,
@@ -34,11 +35,12 @@ class MainPage extends Component {
         hebAnim:false, // if hebrew version was displayed
         redirect:false
     }
+
     messages = {
         introStr : 'My name is Yonatan Aizenshtein.',
         introStr2 : 'Im a fullstack web student.'
     }
-// intro image possibilties and classes.
+    // intro str possibilties and classes.
     intro = {
         intoStart : <h1 className='typewriter inType typing '>{this.messages.introStr}</h1>,
         intoStartend : <h1 className='typewriter'>{this.messages.introStr}</h1>,
@@ -49,10 +51,62 @@ class MainPage extends Component {
     }
     keys = {37: 1, 38: 1, 39: 1, 40: 1};
     componentDidMount = () =>{ 
+         this.noScroll.on()
          window.addEventListener('wheel',this.listener);
-         this.disableScroll()
+
+         this.swipedetect(window, (swipedir) => {
+            // swipedir contains either "none", "left", "right", "top", or "down"
+            console.log(swipedir)
+            if(!this.state.resumeShow){
+            if(swipedir === 'up')
+            this.exitImage()   
+            if(swipedir === 'down')
+            this.enterImage()
+            }
+         });
        }
 
+    /***********Swipe detece for phone***********/   
+    swipedetect = (el, callback) => {
+        var touchsurface = el,
+        swipedir,
+        startX,
+        startY,
+        distX,
+        distY,
+        threshold = 150, //required min distance traveled to be considered swipe
+        restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+        allowedTime = 300, // maximum time allowed to travel that distance
+        elapsedTime,
+        startTime,
+        handleswipe = callback || function(swipedir){}
+      
+        touchsurface.addEventListener('touchstart', (e) =>{
+            var touchobj = e.changedTouches[0]
+            swipedir = 'none'
+            startX = touchobj.pageX
+            startY = touchobj.pageY
+            startTime = new Date().getTime() // record time when finger first makes contact with surface
+        }, false)
+      
+      
+        touchsurface.addEventListener('touchend', (e) =>{
+            var touchobj = e.changedTouches[0]
+            distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+            distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+            elapsedTime = new Date().getTime() - startTime // get time elapsed
+            if (elapsedTime <= allowedTime){ // first condition for awipe met
+                 if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                    swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+                }
+            }
+            handleswipe(swipedir)
+        }, false)
+    }
+    /***********Swipe detece for phone***********/ 
+
+
+       //listener to scroll
        listener = (e) => {
             if (e.deltaY < 0) {
                 this.enterImage()
@@ -61,37 +115,7 @@ class MainPage extends Component {
                 this.exitImage()
             }     
     }
-    preventDefault = (e) => {
-        e = e || window.event;
-        if (e.preventDefault)
-            e.preventDefault();
-        e.returnValue = false;  
-      }
-      
-      preventDefaultForScrollKeys = (e) => {
-          if (this.keys[e.keyCode]) {
-            this.preventDefault(e);
-              return false;
-          }
-      }
-      
-      disableScroll = (e) => {
-        window.addEventListener('DOMMouseScroll', this.preventDefault, false);
-        document.addEventListener('wheel', this.preventDefault, {passive: false}); // Disable scrolling in Chrome
-        window.onwheel = this.preventDefault; // modern standard
-        window.onmousewheel = document.onmousewheel = this.preventDefault; // older browsers, IE
-        window.ontouchmove  = this.preventDefault; // mobile
-        document.onkeydown  = this.preventDefaultForScrollKeys;
-      }
-      
-     enableScroll = () => {
-          window.removeEventListener('DOMMouseScroll', this.preventDefault, false);
-          document.removeEventListener('wheel', this.preventDefault, {passive: false}); // Enable scrolling in Chrome
-          window.onmousewheel = document.onmousewheel = null; 
-          window.onwheel = null; 
-          window.ontouchmove = null;  
-          document.onkeydown = null;  
-      }
+   
 
     enterImage  = () => {
         if(!this.state.enter){
@@ -158,7 +182,7 @@ class MainPage extends Component {
     lang = async (lan) => {
         await this.setState({lan})
         this.messages = {
-            introStr : (this.state.lan === 'en')?'My name is Yonatan Aizenshtein':' קוראים לי יונתן איזנשטיין ',
+            introStr : (this.state.lan === 'en')?'My name is Yonatan Aizenshtein':' קוראים לי יוני איזנשטיין ',
             introStr2 : (this.state.lan === 'en')?'Im a fullstack web student':'  אני תלמיד פול-סטאק ווב'
         }
         this.intro = {
@@ -170,22 +194,25 @@ class MainPage extends Component {
             intoStarted2 : (this.state.lan === 'en')?<h1 className='typewriter starder2 '>{this.messages.introStr2}</h1>:<h1 className='typewriter starder2 he' dir="rtl">{this.messages.introStr2}</h1>,
         }
         await this.setState({intro:null,intro2:null})
-        this.setState({showButton:<TimeLineButton lan={this.state.lan} goToTimeLine={this.goToTimeLine}></TimeLineButton>})
         this.writing();
         if(this.state.resume != null)
          this.setState({resume:<Resume lan={this.state.lan}></Resume>})
+        else
+        this.setState({showButton:<TimeLineButton lan={this.state.lan} goToTimeLine={this.goToTimeLine}></TimeLineButton>})
     }
 
     showRasume = async () => {
         if(!this.state.resumeShow){
+            this.noScroll.off()
             await window.removeEventListener('wheel',this.listener,false)
-            this.enableScroll()
             this.setState({resumeShow:true})
             this.setState({intro:null , intro2:null})
+            this.setState({showButton:null})
             this.setState({resume:<Resume lan={this.state.lan}></Resume>})
        }
        else{
-           this.disableScroll()
+           this.noScroll.on()
+           this.setState({showButton:<TimeLineButton  lan={this.state.lan} goToTimeLine={this.goToTimeLine}></TimeLineButton>})
            this.setState({intro:this.intro.intoStartend})
            this.setState({intro2:this.intro.intoStarted2})
            this.setState({resumeShow:false})
@@ -195,7 +222,6 @@ class MainPage extends Component {
     }
 
     goToTimeLine = async () => {
-        this.enableScroll()
         await window.removeEventListener('wheel',this.listener,false)
         await this.setState({intro:null,intro2:null,resume:null,mainImage:null})
         await this.setState({box:this.box.boxNextPage})
@@ -209,20 +235,25 @@ class MainPage extends Component {
             return <Redirect to='/timeLine'/>;
          }
         return (
-            <div className='m-0 p-0' style = {{backgroundColor: 'hsl(22, 56%, 87%)',backgroundSize:'cover',width: '100vw',height: '100vh'}} >
+            <div className='m-0 p-0' style = {{backgroundColor: 'hsl(22, 56%, 87%)',backgroundSize:'cover',width: '100vw',height: '100vh',}} >
                 <Nav lang={this.lang} lan = {this.state.lan} rasume={this.state.rasume} show={this.showRasume} resumeShow={this.state.resumeShow}></Nav>
+                <div className='container-fluid' style={{textAlign:'center'}}><i className="scroll fas fa-chevron-down" > <span className='scrollDownText'>Scroll down!</span> </i></div>
                 {this.state.resume}
                 {this.state.mainImage}
                 {this.state.endImage}
                 {this.state.box}
                 {this.state.endBox}
-                <div className='container' >
-                    {this.state.intro}
-                    {this.state.intro2}    
+                <div className="container-fluid" style={{height:'80%',width:'90vw',textAlign:'center'}}>
+                    <div className='container-fluid typewriterCon'>
+                        {this.state.intro}
+                        {this.state.intro2}    
+                    </div>
+                    {this.state.showButton}  
                 </div>
-               {this.state.showButton}
+                
             </div>
         )
     }
 }
 export default MainPage;
+

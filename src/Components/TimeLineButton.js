@@ -1,15 +1,15 @@
 import React from 'react';
 import '../Styles/TimeLineButton.scss'
 const TimeLineButton = (props) => {
-    const str = (props.str)?'Back':(props.lan === 'en')?'To timeLine':'לציר הזמן'
-    const btn = (props.str)?'btn1':'btn'
+    const str = (props.str)?'Back':'To timeLine'
+    const lan =(props.str)?'Back':(props.lan === 'en')?'To timeLine':'לציר הזמן'
     return ( 
-        <div id={btn} className={str}>
-          <button className=" button learn-more" onClick={props.goToTimeLine}>
+        <div className={str}>
+          <button className=" button learn-more" onTouchCancelCapture={props.goToTimeLine} onClick={props.goToTimeLine}>
             <div className="circle">
               <span className="icon arrow"></span>
             </div>
-            <p id={str} className="button-text">{str}</p>
+            <p id={str} className="button-text">{lan}</p>
           </button>
         </div>
     )

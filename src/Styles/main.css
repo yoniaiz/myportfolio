@@ -3,7 +3,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-    font-family: '"Numans" , sans - serif';
+    font-family: 'Montserrat', sans-serif;
     display: flex;
 }
 
@@ -139,10 +139,13 @@ body {
     }
 }
 
-
+.typewriterCon{
+    padding-left:270px;
+}
 
 /* DEMO-SPECIFIC STYLES */
 .typewriter {
+    text-align: justify;
     position: absolute;
     margin-top: 5% !important;
     color: #61535a;
@@ -157,13 +160,14 @@ body {
     overflow: none;
 }
 .he{
-    margin-left: 100px !important
+    margin-left: 100px !important;
+    direction: rtl !important;
 }
 .second{
     margin-top: 10% !important;
 }
 .container{
-    margin-left: 25vw !important;
+    margin-left: 23vw !important;
 }
 .inType {
     /* Ensures the content is not revealed until the animation */
@@ -251,12 +255,35 @@ body {
         border-color: orange
     }
 }
-@media (min-width: 2000px) {
+
+.scroll{
+    z-index:1000;
+    font-size:100px;
+    position:absolute;
+    top:55%;
+    opacity: 0;
+    color: #8a7680 !important;
+    animation-name: scrollDown;
+    animation-duration: 3s;
+    animation-delay: 1s;
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    align-content: center;
+}
+.scrollDownText{
+    font-size: 40px;
+    position: relative;
+    top:30px !important;
+    left: -170px;
+}
+@media (min-width: 2200px) {
     .typewriter {
 		display: flex !important;
         margin-top: 70px !important;
         font-size: 70px !important;
-	}
+    }
+    .typewriterCon{
+        padding-left:520px;
+    }
 
 	.second{
         display: flex !important; 
@@ -268,23 +295,54 @@ body {
     }
 
 }
+
+@media (max-width: 2200px){
+    .typewriterCon{
+        padding-left:540px;
+    }
+}
+
+@media (max-width: 1880px){
+    .typewriterCon{
+        padding-left:480px;
+    }
+}
+
+@media (max-width: 1660px){
+    .typewriterCon{
+        padding-left:300px;
+    }
+}
 @media (max-width: 1441px) {
     .typewriter {
 		display: flex !important;
         margin-top: 70px !important;
 
 	}
-
+    .typewriterCon{
+        padding-left:280px;
+    }
 	.second{
         display: flex !important; 
         margin-top: 140px !important;
     }
     .container{
         display: flex !important;
-        margin-left: 25vw !important;
+        margin-left: 24vw !important;
     }
 
 }
+
+@media (max-width: 1200px) {
+	.typewriter {
+		display: flex !important;
+        font-size: 36px;
+    }
+    .typewriterCon{
+        padding-left:200px;
+    }
+}
+
 @media (max-width: 1024px) {
 	.typewriter {
 		display: flex !important;
@@ -298,32 +356,62 @@ body {
     }
     .container{
         display: flex !important;
-        margin-left: 18vw !important;
+        margin-left: 14vw !important;
+    }
+    .typewriterCon{
+        padding-left:100px;
     }
 
 }
+@media (max-width: 950px) {
+	.typewriter {
+		display: flex !important;
+        font-size: 32px;
+    }
+    .typewriterCon{
+        padding-left:60px;
+    }
+}
+
 @media (max-width: 790px) {
 	.typewriter {
 		display: flex !important;
         margin-top: 290px !important;
-        font-size: 37px;
+        font-size: 34px;
 	}
-
+    .typewriterCon{
+        padding-left:0px;
+    }
 	.second{
         display: flex !important; 
         margin-top: 340px !important;
     }
     .container{
         display: flex !important;
-        margin-left: 7vw !important;
+        margin-left: 0vw !important;
     }
 
+}
+
+@media (max-width: 768px) {
+	.typewriter {
+		display: flex !important;
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width: 700px) {
+	.typewriter {
+		display: flex !important;
+        font-size: 23px;
+    }
 }
 @media (max-width: 500px) {
 	.typewriter {
 		display: flex !important;
         margin-top: 300px !important;
-        font-size: 22px;
+        font-size: 18.5px;
 	}
 
 	.second{
@@ -334,6 +422,13 @@ body {
         display: flex !important;
         margin-left: 0px !important;
     }
+    .scroll{
+        font-size: 35px;
+    }
+    .scrollDownText{
+        font-size: 20px;
+        left: -80px;
+    }
 
 }
 
@@ -341,7 +436,7 @@ body {
 	.typewriter {
 		display: flex !important;
         margin-top: 300px !important;
-        font-size: 19px !important;
+        font-size: 15px !important;
 	}
 
 	.second{
@@ -359,7 +454,7 @@ body {
 	.typewriter {
 		display: flex !important;
         margin-top: 300px !important;
-        font-size: 16px !important;
+        font-size: 13.5px !important;
 	}
 
 	.second{
@@ -371,4 +466,36 @@ body {
         margin-left: 0px !important;
     }
 
+}
+
+
+
+@keyframes scrollDown {
+    0% {
+        opacity: 0;
+    }
+    2%{
+        opacity: 1;
+        top: 60%;
+    }
+    30% {
+        top: 65%;
+        opacity: 1;
+    }
+    50% {
+        top: 60%;
+        opacity: 1;
+    }
+    70% {
+        top: 65%;
+        opacity: 1;
+    }
+    90% {
+        top: 60%;
+        opacity: 1;
+    }
+    100% {
+        top: 65%;
+        opacity: 0;
+    }
 }
